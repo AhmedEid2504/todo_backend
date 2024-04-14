@@ -91,16 +91,20 @@ WSGI_APPLICATION = 'todo_drf.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
 
-# Replace the DATABASES setting with the following if you are using PostgreSQL
-database_url = os.environ.get('DATABASE_URL')
-DATABASES["default"] = dj_database_url.parse(database_url)
+DATABASES = {
+    'default': dj_database_url.parse(
+        'postgres://todo_backend_p3ga_user:PiYtAl6DkkfRkZZjsj47fOMOwSjyblhe@dpg-coe1e0gl6cac73bs9v6g-a.oregon-postgres.render.com/todo_backend_p3ga',
+        conn_max_age=600,
+        conn_health_checks=True,
+    )
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators

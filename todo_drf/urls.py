@@ -21,4 +21,4 @@ urlpatterns = [
     path('/', include('api.urls')),
 ]
 
-
+urlpatterns += staticfiles_urlpatterns()
